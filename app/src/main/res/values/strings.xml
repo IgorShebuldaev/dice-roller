@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dice Roller</string>
+    <string name="history">History</string>
+    <string name="todo">TODO</string>
+    <string name="roll">ROLL</string>
+    <string name="roll_result">Roll result:</string>
+    <string name="roll_number">Roll number:</string>
+</resources>
