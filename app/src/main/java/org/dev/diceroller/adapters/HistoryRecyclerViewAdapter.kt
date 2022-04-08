@@ -1,4 +1,4 @@
-package org.dev.diceroller.adapter
+package org.dev.diceroller.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.dev.diceroller.R
-import org.dev.diceroller.model.DiceResult
+import org.dev.diceroller.models.DiceResult
+import org.dev.diceroller.models.getResourceValue
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MyRecyclerViewAdapter(private val diceResultList: List<DiceResult>) : RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+class HistoryRecyclerViewAdapter(private val diceResultList: List<DiceResult>) : RecyclerView.Adapter<HistoryRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val tvRollNumber: TextView = itemView.findViewById(R.id.tvRollNumber)
@@ -36,16 +37,5 @@ class MyRecyclerViewAdapter(private val diceResultList: List<DiceResult>) : Recy
         holder.tvRollNumber.text = diceResult.rollNumber.toString()
         holder.ivRollResult.setImageResource(getResourceValue(diceResult.rollResult))
         holder.tvRollTime.text = SimpleDateFormat("HH:mm:ss", Locale.ENGLISH).format(diceResult.rollTime).toString()
-    }
-
-    private fun getResourceValue(number: Int): Int {
-        return when (number) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-        }
     }
 }

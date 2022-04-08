@@ -1,8 +1,8 @@
 package org.dev.diceroller
 
-import org.dev.diceroller.model.DiceResult
+import org.dev.diceroller.models.DiceResult
 import java.util.ArrayList
 
-object Repo{
+object Repository {
     val diceResultList: ArrayList<DiceResult> = ArrayList()
 }

@@ -5,4 +5,6 @@
     <string name="roll">ROLL</string>
     <string name="roll_result">Roll result:</string>
     <string name="roll_number">Roll number:</string>
+    <string name="sometext">SomeText</string>
+    <string name="dice">Dice</string>
 </resources>

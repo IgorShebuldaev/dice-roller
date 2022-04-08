@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiceRoller">
         <activity
-            android:name=".HistoryActivity"
+            android:name=".activity.HistoryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
