@@ -1,11 +1,11 @@
 package org.dev.diceroller.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import org.dev.diceroller.AppRepository
 import org.dev.diceroller.R
-import org.dev.diceroller.Repository
 import org.dev.diceroller.adapters.HistoryRecyclerViewAdapter
 
 class HistoryActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class HistoryActivity : AppCompatActivity() {
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val myRecyclerViewAdapter = HistoryRecyclerViewAdapter(Repository.diceResultList)
+        val myRecyclerViewAdapter = HistoryRecyclerViewAdapter(AppRepository.get())
 
         recyclerView.adapter = myRecyclerViewAdapter
     }

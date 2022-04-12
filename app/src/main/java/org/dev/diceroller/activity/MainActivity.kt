@@ -1,15 +1,14 @@
-package org.dev.diceroller
+package org.dev.diceroller.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import org.dev.diceroller.activity.HistoryActivity
-import org.dev.diceroller.models.Dice
-import org.dev.diceroller.models.DiceResult
-import org.dev.diceroller.models.getResourceValue
-import java.util.*
+import org.dev.diceroller.AppRepository
+import org.dev.diceroller.R
+import org.dev.diceroller.models.faceImageResource
+import org.dev.diceroller.models.nextRoll
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,11 +20,10 @@ class MainActivity : AppCompatActivity() {
         val bRoll: Button = findViewById(R.id.bRoll)
         val bHistory: Button = findViewById(R.id.bHistory)
 
-        var counter = 0
-
         bRoll.setOnClickListener {
-            Repository.diceResultList.add(DiceResult(++counter, Dice().roll(), Calendar.getInstance().time))
-            ivDice.setImageResource(getResourceValue(Repository.diceResultList.last().rollResult))
+            val face = nextRoll()
+            AppRepository.create(face)
+            ivDice.setImageResource(faceImageResource(face))
         }
 
         bHistory.setOnClickListener {
