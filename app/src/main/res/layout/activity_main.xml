@@ -10,7 +10,7 @@
         android:id="@+id/ivDice"
         android:layout_width="160dp"
         android:layout_height="200dp"
-        android:contentDescription="@string/todo"
+        android:contentDescription="@string/dice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -12,8 +12,9 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
+        title = "History"
 
-        val recyclerView = findViewById<RecyclerView>(R.id.diceResultRecyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.HistoryRecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
