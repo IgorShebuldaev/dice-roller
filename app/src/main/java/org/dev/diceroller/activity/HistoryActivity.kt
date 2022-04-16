@@ -1,6 +1,7 @@
 package org.dev.diceroller.activity
 
 import android.os.Bundle
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +15,25 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_history)
         title = "History"
 
+        val diceFaceSearch: SearchView = findViewById(R.id.svDiceFace)
+
         val recyclerView = findViewById<RecyclerView>(R.id.HistoryRecyclerView)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val myRecyclerViewAdapter = HistoryRecyclerViewAdapter(AppRepository.get())
+        val historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(AppRepository.get())
 
-        recyclerView.adapter = myRecyclerViewAdapter
+        recyclerView.adapter = historyRecyclerViewAdapter
+
+        diceFaceSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                historyRecyclerViewAdapter.filter.filter(newText)
+                return false
+            }
+        })
     }
 }
