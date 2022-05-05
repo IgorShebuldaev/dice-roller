@@ -1,10 +1,17 @@
 package org.dev.diceroller.models
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import org.dev.diceroller.R
 
-data class DiceResult(val id: Int, val face: Face, val createdAt: Long)
+@Entity(tableName = "dice_result")
+data class DiceResult(
+    @PrimaryKey(autoGenerate = true) val id: Int?,
+    @ColumnInfo(name = "face") val face: Face,
+    @ColumnInfo(name = "created_at") val createdAt: Long)
 
-class InvalidFaceException(message: String?) : java.lang.Exception(message) {}
+class InvalidFaceException(message: String?) : java.lang.Exception(message)
 class Face(val value: Int) {
     init {
         if (value < 1 || value > 6) {
@@ -14,7 +21,7 @@ class Face(val value: Int) {
 }
 
 fun nextRoll(): Face {
-    return Face((1..6).random())
+    return Face((1..6).shuffled().last())
 }
 
 fun faceImageResource(face: Face): Int {
