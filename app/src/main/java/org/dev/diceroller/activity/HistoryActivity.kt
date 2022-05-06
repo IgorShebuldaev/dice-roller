@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.text.isDigitsOnly
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.dev.diceroller.DiceApplication
@@ -30,17 +29,17 @@ class HistoryActivity : AppCompatActivity() {
         recyclerView.adapter = historyListAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        updateListAdapter()
+        showAllDiceResults()
 
         diceFaceSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                executeWhere(query)
+                searchFor(query)
 
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                executeWhere(query)
+                searchFor(query)
 
                 return false
             }
@@ -48,10 +47,10 @@ class HistoryActivity : AppCompatActivity() {
 
     }
 
-    private fun executeWhere(str: String) {
-        if (str.isEmpty() || !(str.isDigitsOnly())) { updateListAdapter(); return }
+    private fun searchFor(str: String) {
+        if (str.isEmpty()) { showAllDiceResults(); return }
 
-        diceViewModel.search(str.toInt()).observe(this) { dice ->
+        diceViewModel.search(str).observe(this) { dice ->
             dice.let {
                 historyListAdapter.submitList(it)
             }
@@ -59,8 +58,8 @@ class HistoryActivity : AppCompatActivity() {
 
     }
 
-    private fun updateListAdapter() {
-        diceViewModel.result.observe( this) { dice ->
+    private fun showAllDiceResults() {
+        diceViewModel.allResults.observe( this) { dice ->
             dice.let { historyListAdapter.submitList(it) }
         }
     }

@@ -6,13 +6,13 @@ import org.dev.diceroller.models.DiceResult
 
 class DiceViewModel(private val repository: DiceRepository) : ViewModel() {
 
-    val result: LiveData<List<DiceResult>> = repository.result.asLiveData()
+    val allResults: LiveData<List<DiceResult>> = repository.result.asLiveData()
 
     fun insert(diceResult: DiceResult) = viewModelScope.launch {
         repository.insert(diceResult)
     }
 
-    fun search(face: Int) : LiveData<List<DiceResult>> {
+    fun search(face: String) : LiveData<List<DiceResult>> {
         return repository.search(face)
     }
 }
@@ -23,6 +23,6 @@ class DiceViewModelFactory(private val repository: DiceRepository) : ViewModelPr
             @Suppress("UNCHECKED_CAST")
             return DiceViewModel(repository) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException("Unknown ViewModel class ${modelClass.name}")
     }
 }

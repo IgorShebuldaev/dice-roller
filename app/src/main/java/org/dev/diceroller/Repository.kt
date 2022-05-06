@@ -17,7 +17,7 @@ class DiceRepository(private val diceDao: DiceDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    fun search(face: Int) : LiveData<List<DiceResult>> {
+    fun search(face: String) : LiveData<List<DiceResult>> {
         return diceDao.getByFace(face)
     }
 }

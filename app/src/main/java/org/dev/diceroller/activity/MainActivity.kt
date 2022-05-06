@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         bRoll.setOnClickListener {
             val face = nextRoll()
-            diceViewModel.insert(DiceResult(null, face, System.currentTimeMillis()))
+            diceViewModel.insert(DiceResult(face))
             ivDice.setImageResource(faceImageResource(face))
         }
 

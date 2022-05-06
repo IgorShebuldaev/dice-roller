@@ -15,5 +15,5 @@ interface DiceDao {
     fun getAll(): Flow<List<DiceResult>>
 
     @Query("select * from dice_result where face in (:face)")
-    fun getByFace(face: Int): LiveData<List<DiceResult>>
+    fun getByFace(face: String): LiveData<List<DiceResult>>
 }

@@ -6,10 +6,11 @@ import androidx.room.PrimaryKey
 import org.dev.diceroller.R
 
 @Entity(tableName = "dice_result")
-data class DiceResult(
-    @PrimaryKey(autoGenerate = true) val id: Int?,
-    @ColumnInfo(name = "face") val face: Face,
-    @ColumnInfo(name = "created_at") val createdAt: Long)
+data class DiceResult(@ColumnInfo(name = "face") val face: Face) {
+    @PrimaryKey(autoGenerate = true) var id: Int? = null
+    @ColumnInfo(name = "created_at") var createdAt: Long = System.currentTimeMillis()
+}
+
 
 class InvalidFaceException(message: String?) : java.lang.Exception(message)
 class Face(val value: Int) {
